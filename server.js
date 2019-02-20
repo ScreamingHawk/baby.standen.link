@@ -24,7 +24,7 @@ app.get('/names', (req, res)=>{
 })
 
 // Fail over
-app.put('*', (req, res)=>{
+app.get('*', (req, res)=>{
 	res.sendFile(path.join(clientFolder, 'index.html'))
 })
 
