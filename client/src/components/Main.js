@@ -10,7 +10,6 @@ const StyledMain = styled.main`
 	flex-grow: 1;
 	> div {
 		padding: 2em;
-		flex: 1;
 	}
 `
 
