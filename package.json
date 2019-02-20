@@ -1,0 +1,25 @@
+{
+  "name": "baby.standen.link",
+  "description": "Baby name crowd sourcing website",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "eslint --ignore-path .gitignore ."
+  },
+  "keywords": [
+    "baby",
+    "website",
+    "nodejs"
+  ],
+  "author": "Michael Standen <michael@standen.link>",
+  "license": "MIT"
+}
