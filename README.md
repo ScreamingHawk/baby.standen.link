@@ -12,6 +12,13 @@ Single command
 yarn run dev
 ```
 
+Otherwise with *watch* enabled, use two terminals
+
+```sh
+yarn run watch
+cd client && yarn start
+```
+
 ### Test
 
 ```sh
