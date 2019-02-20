@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
-import ListNames from './components/ListNames';
-//import styled from 'styled-components'
+import ThemeWrapper from './components/ThemeWrapper'
+import Header from './components/Header'
+import ListNames from './components/ListNames'
 
 class App extends Component {
 	render() {
 		return (
-			<div>
-				<header>
-					<span>Name that baby!!</span>
-				</header>
-				<h1>Names</h1>
-				<ListNames />
-			</div>
+			<ThemeWrapper>
+				<div>
+					<Header />
+					<h1>Names</h1>
+					<ListNames />
+				</div>
+			</ThemeWrapper>
 		)
 	}
 }
