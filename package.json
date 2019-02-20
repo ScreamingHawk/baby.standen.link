@@ -12,10 +12,10 @@
     "nodemon": "^1.18.10"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd client && yarn build && cd .. && heroku local web",
-    "watch": "nodemon server.js",
+    "watch": "nodemon server/server.js",
     "heroku-postbuild": "cd client && yarn && yarn build"
   },
   "keywords": [

@@ -5,7 +5,7 @@ const log = require('winston')
 
 const app = express()
 
-const clientFolder = path.join(__dirname, 'client/build')
+const clientFolder = path.join(__dirname, '..', 'client/build')
 
 let names = [
 	{
