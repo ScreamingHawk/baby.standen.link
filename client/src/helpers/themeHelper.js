@@ -1,10 +1,10 @@
 export const createTheme = (name, c1, c2, c3, c4, c5) => {
 	return {
 		name: name,
-		darkest: c1,
-		dark: c2,
+		header: c1,
+		background: c2,
 		main: c3,
-		light: c4,
-		lightest: c5,
+		text: c4,
+		accent: c5,
 	}
 }

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const StyledHeader = styled.header`
 	width: 100%;
 	padding: 2em;
-	background-color: ${({ theme }) => theme.darkest};
+	background-color: ${({ theme }) => theme.header};
 	color: ${({ theme }) => theme.main};
 	flex: 1;
 `;
