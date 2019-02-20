@@ -7,13 +7,10 @@
     "express": "^4.16.4",
     "winston": "^3.2.1"
   },
-  "devDependencies": {
-    "eslint": "^5.14.1"
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pretest": "eslint --ignore-path .gitignore ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "baby",
