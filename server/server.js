@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
-const log = require('winston')
+const log = require('./logger')
 
 const app = express()
 
