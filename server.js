@@ -6,7 +6,13 @@ const app = express()
 
 const clientFolder = path.join(__dirname, 'client/build')
 
-let names = {}
+let names = [
+	{
+		id: 1,
+		name: "Michael",
+		votes: 5,
+	}
+]
 
 // Serve static files
 app.use(express.static(clientFolder))

@@ -6,8 +6,10 @@ This website is for crowd sourcing names and voting on them.
 
 ### Start
 
+Single command
+
 ```sh
-yarn start
+yarn run dev
 ```
 
 ### Test
@@ -16,11 +18,11 @@ yarn start
 yarn test
 ```
 
-### Notes
+### Deploy
 
-Use `yarn`.
-
-Use `heroku`.
+```sh
+git push heroku master
+```
 
 ## Credits
 
