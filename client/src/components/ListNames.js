@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import VotableName from './VotableName';
 
 const StyledListNames = styled.div`
 	text-align: center;
+	max-width: 400px;
+	margin: auto;
 `
 
 const StyledLoading = styled.span`
@@ -50,7 +53,7 @@ class ListNames extends Component {
 					<StyledList>
 						{names.map((name) =>
 							<li key={name.id}>
-								{name.name}
+								<VotableName {...name} />
 							</li>
 						)}
 					</StyledList>
