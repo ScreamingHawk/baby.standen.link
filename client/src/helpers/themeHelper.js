@@ -1,5 +1,6 @@
-export const createTheme = (c1, c2, c3, c4, c5) => {
+export const createTheme = (name, c1, c2, c3, c4, c5) => {
 	return {
+		name: name,
 		darkest: c1,
 		dark: c2,
 		main: c3,
