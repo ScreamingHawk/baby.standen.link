@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+const StyledListNames = styled.div`
+	text-align: center;
+`
+
 const StyledLoading = styled.span`
 	font-style: italic;
+	font-size: 1.2em;
 `
 
 const StyledList = styled.ul`
 	list-style: none;
-	padding-left: 1.2em;
-	color: ${({ theme }) => theme.text};
+	padding-left: 0;
 `
 
 class ListNames extends Component {
@@ -22,12 +26,16 @@ class ListNames extends Component {
 	}
 
 	getNames = () => {
-		fetch('/names')
-			.then(res => res.json())
-			.then(names => this.setState({
-				names,
-				loaded: true,
-			}))
+		this.setState({
+			loaded: false,
+		}, () => {
+			fetch('/names')
+				.then(res => res.json())
+				.then(names => this.setState({
+					names,
+					loaded: true,
+				}))
+		})
 	}
 
 	render() {
@@ -36,33 +44,34 @@ class ListNames extends Component {
 			loaded
 		} = this.state;
 		return (
-			<div>
+			<StyledListNames>
+				<h1>Names</h1>
 				{names.length ? (
-					<div>
-						<StyledList>
-							{names.map((name) =>
-								<li key={name.id}>
-									{name.name}
-								</li>
-							)}
-						</StyledList>
-					</div>
+					<StyledList>
+						{names.map((name) =>
+							<li key={name.id}>
+								{name.name}
+							</li>
+						)}
+					</StyledList>
 				) : (
 					<div>
 						{loaded ? (
 							<div>
 								<span>No names :(</span>
-								<button
-									onClick={this.getNames}>
-									Retry?
-								</button>
 							</div>
 						) : (
 							<StyledLoading>Loading...</StyledLoading>
 						)}
 					</div>
 				)}
-			</div>
+				{loaded && (
+					<button
+						onClick={this.getNames}>
+						Reload
+					</button>
+				)}
+			</StyledListNames>
 		)
 	}
 }

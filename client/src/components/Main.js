@@ -14,16 +14,11 @@ const StyledMain = styled.main`
 	}
 `
 
-const StyledHeading = styled.h1`
-	color: ${({ theme }) => theme.accent};
-`
-
 class Main extends Component {
 	render() {
 		return (
 			<StyledMain>
 				<div>
-					<StyledHeading>Names</StyledHeading>
 					<ListNames />
 				</div>
 			</StyledMain>
