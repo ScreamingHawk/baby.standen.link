@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+
 const log = require('./logger')
+const database = require('./database')
+database.createDatabase()
 
 const app = express()
 

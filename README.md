@@ -4,6 +4,27 @@ This website is for crowd sourcing names and voting on them.
 
 ## Development
 
+### Set Up
+
+Install dependencies
+
+```sh
+yarn && cd client && yarn
+```
+
+[Install postgres](https://www.postgresql.org/download/)
+
+Create database, user and grants
+
+```sh
+psql -U postgres
+CREATE DATABASE baby;
+CREATE USER baby WITH PASSWORD 'baby';
+GRANT ALL PRIVILEGES ON DATABASE baby TO baby;
+```
+
+The above user and credentials are the defaults for this app
+
 ### Start
 
 Single command
@@ -26,6 +47,20 @@ yarn test
 ```
 
 ### Deploy
+
+Set up heroku
+
+```sh
+heroku login
+```
+
+Create a database
+
+```sh
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+Do the deployment
 
 ```sh
 git push heroku master
