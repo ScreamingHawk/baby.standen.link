@@ -104,6 +104,22 @@ app.post('/names', (req, res)=>{
 	})
 })
 
+// Add vote
+app.delete('/names/:nameId', (req, res)=>{
+	// Validate request
+	const { name } = req
+	if (!req.name){
+		log.warn("Invalid request to delete name not found")
+		res.sendStatus(404)
+		return
+	}
+	names = names.filter(n => n.id != name.id)
+	log.debug(`Removed name ${name.name}`)
+	res.sendStatus(204)
+	// Persist deletion
+	database.deleteName(name.id)
+})
+
 // Fail over
 app.get('*', (req, res)=>{
 	res.sendFile(path.join(clientFolder, 'index.html'))

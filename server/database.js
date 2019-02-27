@@ -103,9 +103,26 @@ loadNames = (next) => {
 	})
 }
 
+deleteName = (nameId, next) => {
+	// Delete name
+	log.debug(`Deleting name with id ${nameId}`)
+	pool.connect((err, client, done) => {
+		checkErr(err)
+		client.query({
+			text: 'DELETE FROM baby_names WHERE id = $1',
+			values: [nameId],
+		}, (err, res) => {
+			checkErr(err)
+			callThese(done, next)
+			log.info(`Deleted name with id ${nameId}`)
+		})
+	})
+}
+
 module.exports = {
 	createDatabase,
 	clearDatabase,
 	saveNames,
 	loadNames,
+	deleteName,
 }
