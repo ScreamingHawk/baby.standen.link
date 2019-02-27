@@ -76,7 +76,14 @@ app.post('/names/:nameId/vote', (req, res)=>{
 
 // Add name
 app.post('/names', (req, res)=>{
-	log.debug(`Adding name ${req.body.name}`)
+	let reqName = req.body.name
+	if (!reqName){
+		res.sendStatus(400)
+		return
+	}
+	// Trim whitespace, make title case
+	reqName = reqName.trim().replace(/(^|\s)\S/g, t => t.toUpperCase())
+	log.debug(`Adding name ${reqName}`)
 	let topId = 1
 	// Ensure the list is up to date
 	database.loadNames((err, loaded) => {
@@ -86,7 +93,7 @@ app.post('/names', (req, res)=>{
 		for (let i = 0; i < names.length; i++){
 			const name = names[i]
 			topId = topId > name.id ? topId : name.id
-			if (name.name === req.body.name){
+			if (name.name === reqName){
 				log.debug(`Attempt to submit name ${name.name} already supplied`)
 				// Already in the list, that's ok
 				res.sendStatus(204)
@@ -95,7 +102,7 @@ app.post('/names', (req, res)=>{
 		}
 		names.push({
 			id: topId + 1,
-			name: req.body.name,
+			name: reqName,
 			votes: 1,
 		})
 		res.sendStatus(201)
