@@ -6,6 +6,7 @@ const Input = styled.input`
 	border: none;
 	border-bottom: 1px solid white;
 	font-size: 1.5em;
+	max-width: 100%;
 `;
 
 export default Input
