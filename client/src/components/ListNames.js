@@ -36,6 +36,9 @@ class ListNames extends Component {
 		}, () => {
 			fetch('/names')
 				.then(res => res.json())
+				.then(names => names.sort((a, b) => {
+					return a.votes > b.votes ? -1 : 1
+				}))
 				.then(names => this.setState({
 					names,
 					loaded: true,
