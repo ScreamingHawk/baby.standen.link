@@ -20,9 +20,13 @@ database.createDatabase(() => {
 	})
 })
 
+saveNames = () => {
+	database.saveNames(names)
+}
+
 // Save the names every minute
 setInterval(() => {
-	database.saveNames(names)
+	saveNames()
 }, 60000)
 
 // Accept json
@@ -70,24 +74,34 @@ app.post('/names/:nameId/vote', (req, res)=>{
 	res.sendStatus(200)
 })
 
-
 // Add name
 app.post('/names', (req, res)=>{
-	for (let i = 0; i < names.length; i++){
-		const name = names[i]
-		if (name.name === req.body.name){
-			log.debug(`Attempt to submit name ${name.name} already supplied`)
-			// Already in the list, that's ok
-			res.sendStatus(204)
-			return
+	log.debug(`Adding name ${req.body.name}`)
+	let topId = 1
+	// Ensure the list is up to date
+	database.loadNames((err, loaded) => {
+		if (loaded){
+			names = loaded
 		}
-	}
-	names.push({
-		id: names.length,
-		name: req.body.name,
-		votes: 1,
+		for (let i = 0; i < names.length; i++){
+			const name = names[i]
+			topId = topId > name.id ? topId : name.id
+			if (name.name === req.body.name){
+				log.debug(`Attempt to submit name ${name.name} already supplied`)
+				// Already in the list, that's ok
+				res.sendStatus(204)
+				return
+			}
+		}
+		names.push({
+			id: topId + 1,
+			name: req.body.name,
+			votes: 1,
+		})
+		res.sendStatus(201)
+		// Save the names
+		saveNames()
 	})
-	res.sendStatus(201)
 })
 
 // Fail over
