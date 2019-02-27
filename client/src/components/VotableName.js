@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const StyledName = styled.p`
+const StyledName = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
