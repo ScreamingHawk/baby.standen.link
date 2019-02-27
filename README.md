@@ -27,17 +27,10 @@ The above user and credentials are the defaults for this app
 
 ### Start
 
-Single command
+Single command, this enables *watching*
 
 ```sh
 yarn run dev
-```
-
-Otherwise with *watch* enabled, use two terminals
-
-```sh
-yarn run watch
-cd client && yarn start
 ```
 
 ### Test
