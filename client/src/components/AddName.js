@@ -56,6 +56,7 @@ class AddName extends Component {
 			})
 				.then(() => this.setState({
 					loaded: true,
+					newName: "",
 				}))
 		})
 	}
