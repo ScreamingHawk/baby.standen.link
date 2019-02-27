@@ -4,19 +4,21 @@ const path = require('path')
 
 const log = require('./logger')
 const database = require('./database')
-database.createDatabase()
 
 const app = express()
 
 const clientFolder = path.join(__dirname, '..', 'client/build')
 
-let names = [
-	{
-		id: "1",
-		name: "Michael",
-		votes: 5,
-	}
-]
+let names = []
+
+// Init database and names
+database.createDatabase(() => {
+	database.loadNames((err, loaded) => {
+		if (loaded){
+			names = loaded;
+		}
+	})
+})
 
 // Accept json
 app.use(bodyParser.json())
@@ -31,7 +33,7 @@ app.get('/names', (req, res)=>{
 
 app.param('nameId', (req, res, next, nameId) => {
 	names.forEach(name => {
-		if (name.id === nameId){
+		if (`${name.id}` === nameId){
 			req.name = name
 		}
 	})
@@ -76,7 +78,7 @@ app.post('/names', (req, res)=>{
 		}
 	}
 	names.push({
-		id: `${names.length}`,
+		id: names.length,
 		name: req.body.name,
 		votes: 1,
 	})

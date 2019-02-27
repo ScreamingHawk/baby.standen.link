@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
+    "async": "^2.6.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "pg": "^7.8.1",
