@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import VotableName from './VotableName';
+
+import VotableName from './VotableName'
+import Button from './base/Button'
 
 const StyledListNames = styled.div`
 	text-align: center;
@@ -69,10 +71,10 @@ class ListNames extends Component {
 					</div>
 				)}
 				{loaded && (
-					<button
+					<Button
 						onClick={this.getNames}>
 						Reload
-					</button>
+					</Button>
 				)}
 			</StyledListNames>
 		)

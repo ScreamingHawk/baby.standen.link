@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import Button from './base/Button'
+
 const StyledName = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -54,9 +56,9 @@ class VotableName extends Component {
 				<div>
 					<span>{votes}</span>
 					{voted ? ThumbsUp : (
-						<button onClick={this.addVote}>
+						<Button className="transparent" onClick={this.addVote}>
 							{ThumbsUp}
-						</button>
+						</Button>
 					)}
 				</div>
 			</StyledName>

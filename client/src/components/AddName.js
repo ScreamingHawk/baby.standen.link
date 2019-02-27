@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import Button from './base/Button'
+import Input from './base/Input'
+
 const StyledAddName = styled.div`
 	width: 100%
 	display: flex;
@@ -70,8 +73,14 @@ class AddName extends Component {
 			<StyledAddName>
 				{loaded ? (
 					<StyledForm onSubmit={this.handleSubmit}>
-						<input value={newName} onChange={this.updateNewName} />
-						<button type="submit">Submit</button>
+						<Input
+							value={newName}
+							onChange={this.updateNewName} />
+						<Button
+								className="large"
+								type="submit">
+							Submit
+						</Button>
 					</StyledForm>
 				) : (
 					<StyledSending>Sending...</StyledSending>
