@@ -14,6 +14,7 @@ const StyledForm = styled.form`
 	text-align: center;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: center;
 	width: 100%;
 `
@@ -75,9 +76,9 @@ class AddName extends Component {
 					<StyledForm onSubmit={this.handleSubmit}>
 						<Input
 							value={newName}
+							placeholder="Make a suggestion"
 							onChange={this.updateNewName} />
 						<Button
-								className="large"
 								type="submit">
 							Submit
 						</Button>
