@@ -20,6 +20,11 @@ const Button = styled.button`
 	&.small {
 		font-size: 0.75em;
 	}
+
+	&:disabled {
+		color: ${({ theme }) => theme.error};
+		border-color: ${({ theme }) => theme.error};
+	}
 `;
 
 export default Button

@@ -1,4 +1,4 @@
-export const createTheme = (name, c1, c2, c3, c4, c5) => {
+export const createTheme = (name, c1, c2, c3, c4, c5, c6) => {
 	return {
 		name: name,
 		header: c1,
@@ -6,5 +6,6 @@ export const createTheme = (name, c1, c2, c3, c4, c5) => {
 		main: c3,
 		text: c4,
 		accent: c5,
+		error: c6,
 	}
 }
