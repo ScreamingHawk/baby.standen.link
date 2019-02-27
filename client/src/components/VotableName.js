@@ -3,10 +3,21 @@ import styled from 'styled-components'
 
 import Button from './base/Button'
 
-const StyledName = styled.div`
+const StyledRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	align-items: center;
+	margin-top: 0.5em;
+`
+const StyledName = styled.div`
+	font-size: 1.2em;
+	font-weight: bold;
+`
+const SpacedDiv = styled.div`
+	> * {
+		margin: 0 0.5em;
+	}
 `
 
 const ThumbsUp = (
@@ -51,17 +62,17 @@ class VotableName extends Component {
 			voted,
 		} = this.state;
 		return (
-			<StyledName>
-				<span>{this.props.name}</span>
-				<div>
+			<StyledRow>
+				<StyledName>{this.props.name}</StyledName>
+				<SpacedDiv>
 					<span>{votes}</span>
 					{voted ? ThumbsUp : (
 						<Button className="transparent" onClick={this.addVote}>
 							{ThumbsUp}
 						</Button>
 					)}
-				</div>
-			</StyledName>
+				</SpacedDiv>
+			</StyledRow>
 		)
 	}
 }

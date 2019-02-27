@@ -72,6 +72,7 @@ class ListNames extends Component {
 				)}
 				{loaded && (
 					<Button
+						className="small"
 						onClick={this.getNames}>
 						Reload
 					</Button>
