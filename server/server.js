@@ -20,6 +20,11 @@ database.createDatabase(() => {
 	})
 })
 
+// Save the names every minute
+setInterval(() => {
+	database.saveNames(names)
+}, 60000)
+
 // Accept json
 app.use(bodyParser.json())
 
