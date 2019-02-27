@@ -30,6 +30,7 @@ callThese = (done, next) => {
 
 clearDatabase = (next) => {
 	// Clear
+	log.warn("Dropping database tables")
 	pool.connect((err, client, done) => {
 		checkErr(err)
 		client.query('DROP TABLE IF EXISTS baby_names', (err, res) => {
@@ -48,6 +49,7 @@ createDatabase = (next) => {
 			checkErr(err)
 			if (res.rows[0].count === "0"){
 				// Create missing table
+				log.warn("Creating database tables")
 				client.query('CREATE TABLE baby_names (\
 					id           INT PRIMARY KEY,\
 					name         VARCHAR(20),\
@@ -66,6 +68,8 @@ createDatabase = (next) => {
 
 saveNames = (names, next) => {
 	// Store names
+	log.debug("Saving names: ")
+	log.debug(JSON.stringify(names, null, 2))
 	pool.connect((err, client, done) => {
 		checkErr(err)
 		async.forEach(names, (name, callback)=>{
@@ -81,6 +85,7 @@ saveNames = (names, next) => {
 		}, err => {
 			checkErr(err)
 			callThese(done, next)
+			log.info(`Saved ${names.length} names`)
 		})
 	})
 }
@@ -93,6 +98,7 @@ loadNames = (next) => {
 			checkErr(err)
 			done()
 			next(err, res.rows)
+			log.info(`Loaded ${res.rows.length} names`)
 		})
 	})
 }
