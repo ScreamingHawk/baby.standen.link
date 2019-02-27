@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import {
+	hasVotedFor,
+	addToVotedFor,
+} from '../helpers/localStorage'
+
 import Button from './base/Button'
 
 const StyledRow = styled.div`
@@ -28,7 +33,7 @@ class VotableName extends Component {
 	state = {
 		votes: this.props.votes,
 		loaded: true,
-		voted: false,
+		voted: hasVotedFor(this.props.id),
 	}
 
 	addVote = (e) => {
@@ -49,6 +54,9 @@ class VotableName extends Component {
 					vote: 1,
 				}),
 			})
+				.then(() => {
+					addToVotedFor(this.props.id)
+				})
 				.then(() => this.setState({
 					loaded: true,
 					voted: true,
