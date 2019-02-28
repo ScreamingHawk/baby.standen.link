@@ -69,7 +69,6 @@ createDatabase = (next) => {
 saveNames = (names, next) => {
 	// Store names
 	log.debug("Saving names: ")
-	log.debug(JSON.stringify(names, null, 2))
 	pool.connect((err, client, done) => {
 		checkErr(err)
 		async.forEach(names, (name, callback)=>{
