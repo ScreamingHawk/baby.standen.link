@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import socketIOClient from 'socket.io-client'
 
 import VotableName from './VotableName'
-import Button from './base/Button'
 
 const StyledListNames = styled.div`
 	text-align: center;
@@ -27,23 +27,16 @@ class ListNames extends Component {
 	}
 
 	componentDidMount() {
-		this.getNames()
-	}
-
-	getNames = () => {
-		this.setState({
-			loaded: false,
-		}, () => {
-			fetch('/names')
-				.then(res => res.json())
-				.then(names => names.sort((a, b) => {
+		const socket = socketIOClient()
+		socket.on('names', (names) => {
+			this.setState({
+				names: names.sort((a, b) => {
 					return a.votes > b.votes ? -1 : 1
-				}))
-				.then(names => this.setState({
-					names,
-					loaded: true,
-				}))
+				}),
+				loaded: true,
+			})
 		})
+		socket.emit('request names')
 	}
 
 	render() {
@@ -73,13 +66,7 @@ class ListNames extends Component {
 						)}
 					</div>
 				)}
-				{loaded && (
-					<Button
-						className="small"
-						onClick={this.getNames}>
-						Reload
-					</Button>
-				)}
+				<p><small>This site reloads automatically</small></p>
 			</StyledListNames>
 		)
 	}

@@ -1,11 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+const http = require('http')
+const socketio = require('socket.io')
 
 const log = require('./logger')
 const database = require('./database')
 
 const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
 
 const clientFolder = path.join(__dirname, '..', 'client/build')
 
@@ -35,11 +39,33 @@ app.use(bodyParser.json())
 // Serve static files
 app.use(express.static(clientFolder))
 
-// Returns names
-app.get('/names', (req, res)=>{
-	res.json(names)
+let connectedCount = 0
+
+// Send names to all
+sendNames = () => {
+	log.debug("Sending names to all connected")
+	io.sockets.emit('names', names)
+}
+
+io.on('connection', socket => {
+	log.debug("A user connected")
+	connectedCount++
+	log.debug(`There are ${connectedCount} connected users`)
+
+	socket.on('disconnect', () => {
+		log.debug("A user disconnected")
+		connectedCount--
+		log.debug(`There are ${connectedCount} connected users`)
+	})
+
+	socket.on('request names', () => {
+		log.debug("Client requested names")
+		// Send names to client
+		socket.emit('names', names)
+	})
 })
 
+// Match param to name object
 app.param('nameId', (req, res, next, nameId) => {
 	names.forEach(name => {
 		if (`${name.id}` === nameId){
@@ -72,6 +98,7 @@ app.post('/names/:nameId/vote', (req, res)=>{
 	}
 	log.debug(`Vote for ${name.name} recorded`)
 	res.sendStatus(200)
+	sendNames()
 })
 
 // Add name
@@ -106,6 +133,7 @@ app.post('/names', (req, res)=>{
 			votes: 1,
 		})
 		res.sendStatus(201)
+		sendNames()
 		// Save the names
 		saveNames()
 	})
@@ -123,6 +151,7 @@ app.delete('/names/:nameId', (req, res)=>{
 	names = names.filter(n => n.id != name.id)
 	log.debug(`Removed name ${name.name}`)
 	res.sendStatus(204)
+	sendNames()
 	// Persist deletion
 	database.deleteName(name.id)
 })
@@ -134,6 +163,6 @@ app.get('*', (req, res)=>{
 
 // Start up
 const port = process.env.PORT || 5000
-app.listen(port)
+server.listen(port)
 
 log.info(`Listing on port ${port}`)
