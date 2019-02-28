@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const StyledInfo = styled.div`
+	p {
+		margin: 0;
+	}
 `
 
 class Info extends Component {
@@ -9,7 +12,7 @@ class Info extends Component {
 		return (
 			<StyledInfo>
 				<p>Coming Soon ...</p>
-				<span>5<sup>th</sup> July 2019</span>
+				<p>5<sup>th</sup> July 2019</p>
 			</StyledInfo>
 		)
 	}
