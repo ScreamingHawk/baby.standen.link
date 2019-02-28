@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
 	color: ${({ theme }) => theme.main};
 	text-align: center;
 	font-size: 1.2em;
-	padding: 2em;
+	padding: 1em;
 	box-sizing: border-box;
 	> h2 {
 		margin: 0;

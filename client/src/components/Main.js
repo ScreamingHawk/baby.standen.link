@@ -10,7 +10,7 @@ const StyledMain = styled.main`
 	color: ${({ theme }) => theme.text};
 	flex-grow: 1;
 	> div {
-		padding: 2em;
+		padding: 1em;
 	}
 `
 
