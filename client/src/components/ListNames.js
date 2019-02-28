@@ -46,7 +46,8 @@ class ListNames extends Component {
 		} = this.state;
 		return (
 			<StyledListNames>
-				<h1>Names</h1>
+				<h1>It's a boy!!</h1>
+				<span>Vote for your fave name below</span>
 				{names.length ? (
 					<StyledList>
 						{names.map((name) =>
