@@ -1,6 +1,8 @@
-# Baby.Standen.link
+# NewBaby.Standen.link
 
 This website is for crowd sourcing names and voting on them.
+
+Live at [http://newbaby.standen.link](http://newbaby.standen.link)!
 
 ## Development
 
