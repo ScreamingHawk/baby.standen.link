@@ -27,6 +27,16 @@ GRANT ALL PRIVILEGES ON DATABASE baby TO baby;
 
 The above user and credentials are the defaults for this app
 
+**Note**: Some endpoints (such as `delete`) are password protected
+
+You can configure this password in heroku using the following
+
+```sh
+heroku config:set ADMIN_PASSWORD=baby
+```
+
+Where `baby` is the password. Note `baby` is the default if no password is supplied
+
 ### Start
 
 Single command, this enables *watching*

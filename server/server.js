@@ -13,6 +13,8 @@ const io = socketio(server)
 
 const clientFolder = path.join(__dirname, '..', 'client/build')
 
+const adminPassword = process.env.ADMIN_PASSWORD || 'baby'
+
 let names = []
 
 // Init database and names
@@ -141,6 +143,12 @@ app.post('/names', (req, res)=>{
 
 // Add vote
 app.delete('/names/:nameId', (req, res)=>{
+	// Check password
+	if (req.body.password !== adminPassword){
+		log.error("Unauthorised access attempt to delete")
+		res.sendStatus(401)
+		return
+	}
 	// Validate request
 	const { name } = req
 	if (!req.name){
