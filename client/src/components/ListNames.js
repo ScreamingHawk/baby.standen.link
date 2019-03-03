@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import socketIOClient from 'socket.io-client'
 
 import VotableName from './VotableName'
+import ThumbsUp from './base/ThumbsUp'
 
 const StyledListNames = styled.div`
 	text-align: center;
@@ -47,7 +48,10 @@ class ListNames extends Component {
 		return (
 			<StyledListNames>
 				<h1>It's a boy!!</h1>
-				<span>Vote for your fave name below</span>
+				<p>
+					<span>Vote for your fave name below by clicking the </span>
+					<ThumbsUp />
+				</p>
 				{names.length ? (
 					<StyledList>
 						{names.map((name) =>

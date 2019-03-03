@@ -7,6 +7,7 @@ import {
 } from '../helpers/localStorage'
 
 import Button from './base/Button'
+import ThumbsUp from './base/ThumbsUp'
 
 const StyledRow = styled.div`
 	display: flex;
@@ -24,10 +25,6 @@ const SpacedDiv = styled.div`
 		margin: 0 0.5em;
 	}
 `
-
-const ThumbsUp = (
-	<span role="img" aria-label="vote">👍</span>
-)
 
 class VotableName extends Component {
 	state = {
@@ -74,9 +71,11 @@ class VotableName extends Component {
 				<StyledName>{this.props.name}</StyledName>
 				<SpacedDiv>
 					<span>{votes}</span>
-					{voted ? ThumbsUp : (
+					{voted ? (
+						<ThumbsUp />
+					) : (
 						<Button className="transparent" onClick={this.addVote}>
-							{ThumbsUp}
+							<ThumbsUp />
 						</Button>
 					)}
 				</SpacedDiv>
