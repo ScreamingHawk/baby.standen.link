@@ -32,7 +32,16 @@ class ListNames extends Component {
 		socket.on('names', (names) => {
 			this.setState({
 				names: names.sort((a, b) => {
-					return a.votes > b.votes ? -1 : 1
+					if (a.votes < b.votes){
+						return 1
+					}
+					if (a.votes > b.votes){
+						return -1
+					}
+					if (a.name > b.name){
+						return 1
+					}
+					return -1
 				}),
 				loaded: true,
 			})
