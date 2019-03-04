@@ -28,7 +28,6 @@ const SpacedDiv = styled.div`
 
 class VotableName extends Component {
 	state = {
-		votes: this.props.votes,
 		loaded: true,
 		voted: hasVotedFor(this.props.id),
 	}
@@ -40,7 +39,6 @@ class VotableName extends Component {
 		this.setState({
 			loaded: false,
 			voted: true,
-			votes: this.state.votes + 1,
 		}, () => {
 			fetch(`/names/${this.props.id}/vote`, {
 				method: 'POST',
@@ -63,12 +61,15 @@ class VotableName extends Component {
 
 	render() {
 		const {
-			votes,
 			voted,
 		} = this.state;
+		const {
+			name,
+			votes,
+		} = this.props;
 		return (
 			<StyledRow>
-				<StyledName>{this.props.name}</StyledName>
+				<StyledName>{name}</StyledName>
 				<SpacedDiv>
 					<span>{votes}</span>
 					{voted ? (
